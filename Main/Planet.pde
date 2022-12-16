@@ -3,8 +3,8 @@ class Planet {
   float mass;
   float radius;
   PVector position = new PVector();
-  PVector velocityms = new PVector();
   PVector accel = new PVector();
+  PVector velocityms = new PVector();
   PVector gravityforce = new PVector();
   float situation;
   float gravconst = 6.67430 * pow(10, -11);
@@ -25,8 +25,8 @@ class Planet {
     
     if (situation == 2.0) {
       
-      position.x = -100;
-      position.y = random(-100, 1100);
+      position.x = random(-100, 1100);
+      position.y = 1100;
       
     }
 
@@ -105,23 +105,46 @@ class Planet {
     
   }
   
-  public void gravity(int i, int ii) {
+  /* public void gravity(int i, int ii) {
+    
     
     float dist = dist(planets[i].getposx(), planets[i].getposy(), planets[ii].getposx(), planets[ii].getposy());
     planets[i].gravityforce.set(planets[ii].position.sub(planets[i].position).normalize().mult(gravconst * (planets[i].mass * planets[ii].mass) / pow(dist, 2)));
     
   }
   
+  */
+  public PVector calcGravity() {
+    
+    ftotal = new PVector(0,0,0);
+    FO(i=0; I^...) {
+      float dist = dist(getposx(), getposy(), planets[i].getposx(), planets[i].getposy());
+      if (dist != 0 {
+        Pvector f = planets[i].position.sub(position).normalize().mult(gravconst * (planets[i].mass * mass) / pow(dist, 2)));
+        ftotal.add(f);
+      }
+      // planets[i].gravityforce.set(planets[ii].position.sub(planets[i].position).normalize().mult(gravconst * (planets[i].mass * planets[ii].mass) / pow(dist, 2)));
+    }
+    return ftotal;
+  }
+  
   void move(float dt, PVector gravityforce) {
     
-    velocityms.x += gravityforce.x * dt;
-    velocityms.y += gravityforce.y * dt;
+    accel.x = gravityforce.x / mass; 
+    accel.y = gravityforce.y / mass; 
+    
+    velocityms.x += accel.x * dt;
+    velocityms.y += accel.y * dt;
     
     position.x += (velocityms.x / 10) * dt;
     position.y += (velocityms.y / 10) * dt; 
     
     gravityforce.x = 0;
     gravityforce.y = 0;
+    
+    accel.x = 0;
+    accel.y = 0;
+    
   }
   
   void draw() {

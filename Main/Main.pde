@@ -6,7 +6,7 @@ Sound?
 
 */
 
-import processing.sound.*;
+//import processing.sound.*;
 
 int pcount = 5;
 int starttime = millis();
@@ -55,23 +55,25 @@ void draw() {
     
   }
   
-  for (int i = 0; i < pcount; i++) { //<>//
-    
-    for (int ii = 0; ii < pcount && ii != i; ii++) { //<>//
-        
-    //planets[i].gravityforce.x += gravconst * ((planets[i].mass * planets[ii].mass) / pow(planets[i].distance[ii], 2)); //<>//
-    //planets[i].gravityforce.y += gravconst * ((planets[i].mass * planets[ii].mass) / pow(planets[i].distance[ii], 2)); //<>//
-    
-       planets[i].gravity(i, ii);
-    
-    }
-    
-  }
+   //<>// //<>// //<>// //<>//
   
   for (int i = 0; i < pcount; i++) {
         
       planets[i].draw();
       planets[i].move(dt, planets[i].gravityforce);
+    
+  }
+  
+  for (int i = 0; i < pcount; i++) {
+    
+    for (int ii = 0; ii < pcount && ii != i; ii++) {
+        
+    //planets[i].gravityforce.x += gravconst * ((planets[i].mass * planets[ii].mass) / pow(planets[i].distance[ii], 2));
+    //planets[i].gravityforce.y += gravconst * ((planets[i].mass * planets[ii].mass) / pow(planets[i].distance[ii], 2));
+    
+       planets[i].gravity(i, ii);
+    
+    }
     
   }
   
