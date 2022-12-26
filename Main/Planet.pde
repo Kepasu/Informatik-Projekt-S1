@@ -6,47 +6,52 @@ class Planet {
   PVector accel = new PVector();
   PVector velocityms = new PVector();
   PVector gravityforce = new PVector();
-  float situation;
+  int situation;
   float gravconst = 6.67430 * pow(10, -11);
+  
   
   public float[] distance = new float[pcount];
   
+  SawOsc saw;
   
   void generate() {
+       
+    position.x = 0;
+    position.y = 0;
     
-    situation = round(random(1, 4));
+    situation = int(random(1, 4));
     
     if (situation == 1.0) {
       
       position.x = -100;
-      position.y = random(-100, 1100);
+      position.y = random(-100, height + 100);
       
     }
     
     if (situation == 2.0) {
       
-      position.x = random(-100, 1100);
-      position.y = 1100;
+      position.x = random(-100, width + 100);
+      position.y = height + 100;
       
     }
 
     if (situation == 3.0) {
       
-      position.x = 1100;
-      position.y = random(-100, 1100);
+      position.x = width + 100;
+      position.y = random(-100, height + 100);
       
     }
 
     if (situation == 4.0) {
       
-      position.x = random(-100, 1100);
+      position.x = random(-100, width + 100);
       position.y = -100;
       
     }
     
     
     
-    if (position.x >= 500) {
+    if (position.x >= width / 2) {
       
       velocityms.x = - random(0.1, 0.2);
       
@@ -56,7 +61,7 @@ class Planet {
       
     }
 
-    if (position.y >= 500) {
+    if (position.y >= height / 2) {
       
       velocityms.y = - random(0.1, 0.2);
       
@@ -67,14 +72,16 @@ class Planet {
     }
 
 
-    radius = random(5, 20);
-    mass = radius * 10000;
-    gravityforce.x = 0;
-    gravityforce.y = 0;
+    radius = random(5, 50);
+    //mass = (3/4) * PI * pow(radius * 1000, 3) * 551000;
+    mass = radius / 5;
+    //gravityforce.x = 0;
+    //gravityforce.y = 0;
     
     
-  }
+  } 
   
+  /*
   public float getposx() {
     
     return position.x;
@@ -86,58 +93,67 @@ class Planet {
     return position.y;
     
   }
-  
-  public void setgravforcex(float gravforce) {
-    
-    gravityforce.x = gravforce;
-    
-  }
-  
-  public void setgravforcey(float gravforce) {
-    
-    gravityforce.y = gravforce;
-    
-  }
-  
-  public void setgravforce(PVector gravforce) {
-    
-    //Planet.gravityforce = gravforce;
-    
-  }
-  
-  /* public void gravity(int i, int ii) {
-    
-    
-    float dist = dist(planets[i].getposx(), planets[i].getposy(), planets[ii].getposx(), planets[ii].getposy());
-    planets[i].gravityforce.set(planets[ii].position.sub(planets[i].position).normalize().mult(gravconst * (planets[i].mass * planets[ii].mass) / pow(dist, 2)));
-    
-  }
-  
   */
+  
+  public PVector getpos() {
+    
+    return position;
+    
+  }
+    
+  
+  
+  
   public PVector calcGravity() {
     
-    ftotal = new PVector(0,0,0);
-    FO(i=0; I^...) {
-      float dist = dist(getposx(), getposy(), planets[i].getposx(), planets[i].getposy());
-      if (dist != 0 {
-        Pvector f = planets[i].position.sub(position).normalize().mult(gravconst * (planets[i].mass * mass) / pow(dist, 2)));
+    PVector ftotal = new PVector(0,0,0);
+    for (int i=0; i < pcount; i++) {
+      
+      float dist = dist(getpos().x, getpos().x, planets[i].getpos().x, planets[i].getpos().y);
+      
+      if (dist > 0) {
+        
+        PVector f = planets[i].position.sub(getpos()).normalize().mult(0.001 * (planets[i].mass * mass) / pow(dist, 2));
         ftotal.add(f);
+        
       }
-      // planets[i].gravityforce.set(planets[ii].position.sub(planets[i].position).normalize().mult(gravconst * (planets[i].mass * planets[ii].mass) / pow(dist, 2)));
+      
     }
+    
     return ftotal;
+    
   }
   
-  void move(float dt, PVector gravityforce) {
+  void applyForce(Planet other) {
     
-    accel.x = gravityforce.x / mass; 
-    accel.y = gravityforce.y / mass; 
+    PVector force = PVector.sub(other.getpos(), getpos());
+    float dist = force.mag();
+    dist = constrain(dist, 5.0, 25.0);
+    force.normalize();
+    float strength = (0.0008 * mass * other.mass) / pow(dist, 2);
+    force.mult(strength);
+    accel.add(force);
+    
+  }
+  
+  public PVector calcAccel() {
+    
+    PVector accel = new PVector();
+    
+    accel.x = calcGravity().x / mass;
+    accel.y = calcGravity().y / mass;
+    
+    return accel;
+    
+  }
+  
+  void move(float dt) {
     
     velocityms.x += accel.x * dt;
     velocityms.y += accel.y * dt;
     
-    position.x += (velocityms.x / 10) * dt;
-    position.y += (velocityms.y / 10) * dt; 
+    position.x += velocityms.x / 5 * dt;
+    position.y += velocityms.y / 5 * dt; 
     
     gravityforce.x = 0;
     gravityforce.y = 0;
@@ -149,9 +165,10 @@ class Planet {
   
   void draw() {
     
-    if (position.x <= 1000 || position.y <= 1000) {
+    if (position.x <= width || position.y <= height) {
       
       circle(position.x, position.y, radius);
+      //filter(BLUR);
       
     }
     
@@ -162,13 +179,8 @@ class Planet {
     System.out.println(); 
     System.out.println("pos: " + position.x + "|" + position.y);
     System.out.println("vel: " + velocityms.x + "|" + velocityms.y);
-    System.out.println("situation: " + situation);
-    for (int i = 0; i < pcount; i++) {
-      
-      System.out.println("distance" + i + ": "  + distance[i]);
-      System.out.println("gravforce" + i + ": " + gravityforce);
-      
-    }
+    System.out.println("acc: " + accel.x + "|" + accel.y);
+    System.out.println("radius: " + radius + " | " + "mass: " + mass);
     
   }
   
