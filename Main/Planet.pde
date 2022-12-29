@@ -8,14 +8,17 @@ class Planet {
   PVector gravityforce = new PVector();
   int situation;
   float gravconst = 6.67430 * pow(10, -11);
-  
+  boolean alive;
+  Oscillator Osc;
   
   public float[] distance = new float[pcount];
   
-  SawOsc saw;
-  
   void generate() {
-       
+    
+    setalive(true);
+    
+    Osc = new Oscillator();
+    
     position.x = 0;
     position.y = 0;
     
@@ -77,10 +80,27 @@ class Planet {
     mass = radius / 5;
     //gravityforce.x = 0;
     //gravityforce.y = 0;
+    Osc.play(this);
     
-    
-  } 
+  }
   
+  public void update() {
+    
+    Osc.updateOsc(this);
+    
+  }
+  
+  public boolean getalive() {
+    
+    return alive;
+    
+  }
+  
+  public void setalive(boolean a) {
+    
+    alive = a;
+    
+  }
   /*
   public float getposx() {
     

@@ -9,10 +9,7 @@ Grafik
 import processing.sound.*;
 
 Sound s;
-
-SawOsc Saw;
-
-int pcount = 4;
+int pcount = 3;
 int starttime = millis();
 int time = 0;
 
@@ -24,13 +21,11 @@ void setup() {
     
     planets[i] = new Planet(); //<>//
     planets[i].generate();
-    Saw = new SawOsc(this);
-    Saw.play();
     
   }
 
   size(1000, 1000);
-  fullScreen();
+  //fullScreen();
   smooth();
   background(#180C39);
   
@@ -50,6 +45,7 @@ void draw() {
         
     if (planets[i].getpos().x > width + 100 | planets[i].getpos().x < -100 | planets[i].getpos().y > height + 100 | planets[i].getpos().y < -100) {
       
+      planets[i].setalive(false);
       planets[i].generate();
       
     } else {
@@ -60,8 +56,9 @@ void draw() {
         
       }
       
-      planets[i].move(dt);
-      planets[i].draw();
+      planets[i].move(dt); //<>//
+      planets[i].draw(); //<>//
+      planets[i].update(); //<>//
       //planets[i].alert();
       
     }
@@ -69,5 +66,6 @@ void draw() {
   }
   
   //delay(100);
+  s.volume(0.5);
   
 }
