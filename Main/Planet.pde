@@ -5,7 +5,7 @@ class Planet {
   PVector position = new PVector();
   PVector accel = new PVector();
   PVector velocityms = new PVector();
-  PVector gravityforce = new PVector();
+  //PVector gravityforce = new PVector();
   int situation;
   float gravconst = 6.67430 * pow(10, -11);
   boolean alive;
@@ -84,11 +84,13 @@ class Planet {
     
   }
   
+  /*
   public void update() {
     
     Osc.updateOsc(this);
     
   }
+  */
   
   public boolean getalive() {
     
@@ -101,19 +103,6 @@ class Planet {
     alive = a;
     
   }
-  /*
-  public float getposx() {
-    
-    return position.x;
-    
-  }
-  
-  public float getposy() {
-    
-    return position.y;
-    
-  }
-  */
   
   public PVector getpos() {
     
@@ -175,8 +164,8 @@ class Planet {
     position.x += velocityms.x / 5 * dt;
     position.y += velocityms.y / 5 * dt; 
     
-    gravityforce.x = 0;
-    gravityforce.y = 0;
+    //gravityforce.x = 0;
+    //gravityforce.y = 0;
     
     accel.x = 0;
     accel.y = 0;
@@ -191,6 +180,8 @@ class Planet {
       //filter(BLUR);
       
     }
+    
+    Osc.updateOsc(this);
     
   }
   

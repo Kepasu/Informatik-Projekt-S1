@@ -9,7 +9,7 @@ Grafik
 import processing.sound.*;
 
 Sound s;
-int pcount = 3;
+int pcount = 7;
 int starttime = millis();
 int time = 0;
 
@@ -57,8 +57,7 @@ void draw() {
       }
       
       planets[i].move(dt); //<>//
-      planets[i].draw(); //<>//
-      planets[i].update(); //<>//
+      planets[i].draw(); //<>// //<>//
       //planets[i].alert();
       
     }
