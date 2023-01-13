@@ -1,0 +1,58 @@
+<mxfile host="app.diagrams.net" modified="2023-01-13T10:50:38.843Z" agent="5.0 (Macintosh)" etag="jgoNa4evzWpIM2BeVPEE" version="20.8.5" type="github">
+  <diagram id="zu9HH6wAxJ3YPuI856qo" name="Seite-1">
+    <mxGraphModel dx="1434" dy="724" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="gTj6li5EXcNgvSlgn-7y-1" value="Planet" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="210" y="110" width="160" height="360" as="geometry">
+            <mxRectangle x="210" y="110" width="100" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gTj6li5EXcNgvSlgn-7y-13" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;" parent="gTj6li5EXcNgvSlgn-7y-1" edge="1">
+          <mxGeometry x="-0.1657" y="-40" relative="1" as="geometry">
+            <mxPoint y="10" as="sourcePoint" />
+            <mxPoint y="33" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-60" y="10" />
+              <mxPoint x="-60" y="33" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gTj6li5EXcNgvSlgn-7y-2" value="mass: float&#xa;radius: float&#xa;position: PVector&#xa;accel: PVector&#xa;velocityms: PVector&#xa;&#xa;alive: boolean&#xa;situation: int&#xa;&#xa;distance[]: float&#xa;Osc: Oscillator&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="gTj6li5EXcNgvSlgn-7y-1" vertex="1">
+          <mxGeometry y="40" width="160" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="gTj6li5EXcNgvSlgn-7y-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="gTj6li5EXcNgvSlgn-7y-1" vertex="1">
+          <mxGeometry y="210" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="gTj6li5EXcNgvSlgn-7y-4" value="generate(): void&#xa;move(float): void&#xa;draw(): void&#xa;alert(): void&#xa;&#xa;calcGravity(): PVector&#xa;calcAccel(): PVector&#xa;&#xa;applyForce(Planet): void&#xa;&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="gTj6li5EXcNgvSlgn-7y-1" vertex="1">
+          <mxGeometry y="218" width="160" height="142" as="geometry" />
+        </mxCell>
+        <mxCell id="gTj6li5EXcNgvSlgn-7y-5" value="Oscillator" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="550" y="100" width="160" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="gTj6li5EXcNgvSlgn-7y-6" value="amp: float&#xa;freq: float&#xa;pan: float&#xa;&#xa;saw: SawOsc&#xa;lowPass: LowPass" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="gTj6li5EXcNgvSlgn-7y-5" vertex="1">
+          <mxGeometry y="26" width="160" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="gTj6li5EXcNgvSlgn-7y-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="gTj6li5EXcNgvSlgn-7y-5" vertex="1">
+          <mxGeometry y="120" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="gTj6li5EXcNgvSlgn-7y-8" value="updateOsc(Planet): void&#xa;play(): void&#xa;stop(): void&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="gTj6li5EXcNgvSlgn-7y-5" vertex="1">
+          <mxGeometry y="128" width="160" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="gTj6li5EXcNgvSlgn-7y-9" value="1" style="endArrow=none;html=1;startArrow=diamondThin;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;entryX=-0.012;entryY=0.089;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=1;endFill=0;startSize=8;" parent="1" source="gTj6li5EXcNgvSlgn-7y-2" target="gTj6li5EXcNgvSlgn-7y-5" edge="1">
+          <mxGeometry x="-0.8626" relative="1" as="geometry">
+            <mxPoint x="330" y="250" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="460" y="300" />
+              <mxPoint x="460" y="117" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
