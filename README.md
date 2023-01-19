@@ -27,5 +27,3 @@
 ![alt text](https://github.com/Kepasu/Informatik-Projekt-S1/blob/main/Klassendiagramm.drawio.png?raw=true)
 
 
-
-## s/o Tomas Ondrejka 
