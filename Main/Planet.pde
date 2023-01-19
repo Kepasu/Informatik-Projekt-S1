@@ -52,8 +52,6 @@ class Planet {
       
     }
     
-    
-    
     if (position.x >= width / 2) {
       
       velocityms.x = - random(0.1, 0.2);
@@ -74,8 +72,7 @@ class Planet {
       
     }
 
-
-    radius = random(5, 50);
+    radius = random(5, 25);
     //mass = (3/4) * PI * pow(radius * 1000, 3) * 551000;
     mass = radius / 5;
     //gravityforce.x = 0;
@@ -108,10 +105,7 @@ class Planet {
     
     return position;
     
-  }
-    
-  
-  
+  } 
   
   public PVector calcGravity() {
     
@@ -163,9 +157,6 @@ class Planet {
     
     position.x += velocityms.x / 5 * dt;
     position.y += velocityms.y / 5 * dt; 
-    
-    //gravityforce.x = 0;
-    //gravityforce.y = 0;
     
     accel.x = 0;
     accel.y = 0;

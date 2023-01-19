@@ -12,12 +12,14 @@ class Oscillator extends Main {
     lowPass = new LowPass(this);
     
     saw.amp(map(p.radius, 5, 50, 0, 0.5));
-    saw.pan(map(p.getpos().x, -200, width + 200, -1, 1));
-    lowPass.process(saw);
-    lowPass.freq(map(p.getpos().y, 0, height, 0, 5000));
+    saw.pan(map(p.getpos().x, -200, width + 200, -0.99, 0.99));
+    //lowPass.process(saw);
+    saw.freq(map(p.getpos().y, 0, height, 0, 3000));
+    //lowPass.process(saw);
+    lowPass.freq(8000);
+    
     
   }
-  
   
   void play(Planet p) {
     
@@ -39,6 +41,5 @@ class Oscillator extends Main {
     saw.stop();
     
   }
-  
   
 }

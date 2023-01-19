@@ -1,11 +1,3 @@
-/*
-to dos:
-
-Sound
-Grafik
-
-*/
-
 import processing.sound.*;
 
 Sound s;
@@ -29,7 +21,6 @@ void setup() {
   smooth();
   background(#180C39);
   
-  //Sound.list();
   s = new Sound(this);
   
 }
