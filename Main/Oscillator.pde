@@ -14,9 +14,9 @@ class Oscillator extends Main {
     saw.amp(map(p.radius, 5, 50, 0, 0.5));
     saw.pan(map(p.getpos().x, -200, width + 200, -0.99, 0.99));
     //lowPass.process(saw);
-    saw.freq(map(p.getpos().y, 0, height, 0, 3000));
+    saw.freq(map(p.getpos().y, 0, height, 0, 2000));
     //lowPass.process(saw);
-    lowPass.freq(8000);
+    lowPass.freq(5000);
     
     
   }
